@@ -6,7 +6,7 @@ name: Make Zip
 on:
   # Triggers the workflow on push or pull request events but only for the latest branch
   push:
-    branches: [ latest ]
+    tags: v*
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -28,3 +28,13 @@ jobs:
         with:
           # Filename for archive
           filename: compact-crafting.zip
+          exclusions: '.git .github'
+          
+      - name: Create GitHub Release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          title: "Release ${{ github.event.release.tag_name }}"
+          automatic_release_tag: "latest"
+          repo_token: secrets.GITHUB_TOKEN
+          prerelease: false
+          files: compact-crafting.zip
