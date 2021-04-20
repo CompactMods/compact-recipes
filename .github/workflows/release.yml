@@ -28,7 +28,7 @@ jobs:
         with:
           # Filename for archive
           filename: compact-crafting.zip
-          exclusions: '*.git/* .github/*'
+          exclusions: '*.git/* *.github/*'
           
       - name: Create GitHub Release
         uses: "marvinpinto/action-automatic-releases@latest"
